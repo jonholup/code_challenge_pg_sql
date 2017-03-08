@@ -42,7 +42,7 @@ router.post('/', function(req, res){
       res.sendStatus(500);
     } else {
       client.query('INSERT INTO treats (name, description, pic) VALUES ($1, $2, $3);',
-      [newTreat.name, newTreat.description, newTreat.pic],
+      [newTreat.name, newTreat.description, newTreat.url],
       function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
