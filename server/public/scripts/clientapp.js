@@ -8,15 +8,16 @@ $(document).ready(function () {
   $('#saveNewButton').on('click', function(event) {
     event.preventDefault();
 
-    var treateName = $('#treatNameInput').val();
+    var treatName = $('#treatNameInput').val();
     var treatDescription = $('#treatDescriptionInput').val();
-    var treateURL = $('#treatUrlInput').val();
+    var treatURL = $('#treatUrlInput').val();
 
     var newTreat = {
-      name: treateName,
+      name: treatName,
       description: treatDescription,
-      url: treateURL
+      url: treatURL
     };
+    console.log('newTreat line 20:',newTreat);
 
     postTreat(newTreat);
   });

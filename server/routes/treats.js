@@ -3,6 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var pg = require('pg');
 var app = express();
+app.use(bodyParser.urlencoded({extended: true}));
 var config = {
   database: 'phi', // the name of the database
   host: 'localhost', // where is your database
@@ -11,7 +12,7 @@ var config = {
   idleTimeoutMillis: 30000 // 30 seconds to try to connect
 };
 var pool = new pg.Pool(config);
-app.use(bodyParser.urlencoded({extended: true}));
+
 
 router.get('/', function(req, res){
   pool.connect(function(errorConnectingToDatabase, client, done){
@@ -34,6 +35,7 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res){
   var newTreat = req.body;
+  console.log('newTreat:', newTreat);
   pool.connect(function(errorConnectingToDatabase, client, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to database: ', errorConnectingToDatabase);
